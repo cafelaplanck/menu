@@ -485,3 +485,7 @@ poetry.toml
 *.json
 *.pdf
 *.config
+.
+*.ttf
+*.ttc
+*.otf

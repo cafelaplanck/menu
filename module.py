@@ -5,6 +5,7 @@ Générer les instructions LaTeX pour le menu de la Planck
 """
 
 import configparser
+import pathlib
 
 import pandas
 
@@ -14,6 +15,58 @@ import csv
 import gspread # https://github.com/burnash/gspread
 
 from oauth2client.service_account import ServiceAccountCredentials
+
+
+def initialiser_configuration():
+    'Cherche un fichier de configuration à différents endroits, et en crée un au besoin.'
+    par_défaut = [pathlib.Path('~/.config/menu_planck/menu_planck.config').expanduser(),
+                  pathlib.Path('menu_planck.config')]
+    
+    for nom in par_défaut:
+        if nom.exists():
+            return nom
+    
+    nom = par_défaut[0]
+    for chemin in nom.parents:
+        if not chemin.exists():
+            chemin.mkdir()
+    
+    configuration = configparser.ConfigParser()
+    
+    print('Configuration de base. Pour bien comprendre les paramètres, assurez-vous d\'avoir lu `Readme.md` avant de procéder.')
+    continuer = input('Continuer? [o|n]') == 'o'
+    
+    print('Il faut obtenir une clé de service en format JSON, pour utiliser l\'API de Google et télécharger automatiquement le menu. Procéder à l\'adresse https://console.developers.google.com/apis/credentials/serviceaccountkey .')
+    clé_de_service = pathlib.Path(input('Fichier JSON de clé de service:'))
+    with clé_de_service.open('r', encoding='utf-8') as fichier_initial:
+        clé = fichier_initial.read()
+    
+    chemin_clé = nom.parent / clé_de_service.name
+    with chemin_clé.open('w', encoding='utf-8') as fichier_final:
+        fichier_final.write(clé)
+    
+    configuration.add_section('google')
+    configuration['google']['credentials'] = str(chemin_clé)
+    
+    print('Il faut aussi l\'adresse du tableur Google.')
+    adresse = input('Adresse du document:')
+    
+    # Lien typique
+    # https://docs.google.com/spreadsheets/d/1ZHSPzywfGYVS4Y6xGfwe3T9-VhZQrgsfcKQnPx0lcvE/edit?usp=sharing
+    docid = adresse.split('://', 1)[1].split('/', 4)[3]
+    
+    configuration.add_section('document')
+    configuration['document']['id'] = docid
+    
+    feuille = input('Nom de la feuille de calcul:')
+    configuration['document']['feuille'] = feuille
+    
+    with nom.open('w', encoding='utf-8') as fichier_final:
+        configuration.write(fichier_final)
+    
+    print(f'La configuration a été écrite à {nom}')
+    
+    return nom
 
 
 def télécharger_inventaire(config: dict[dict]) -> pandas.DataFrame:
@@ -98,7 +151,9 @@ def afficher_catégories(subs: dict[pandas.DataFrame]):
 
 def main():
     config = configparser.ConfigParser()
-    config.read('menu.config')
+    
+    nom_config = initialiser_configuration()
+    config.read(nom_config)
     
     produits = télécharger_inventaire(config)
     produits = ajouter_avertissements(produits)
