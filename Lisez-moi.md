@@ -4,8 +4,8 @@ Ce programme génère le menu de la Planck automatiquement, à partir de l'inven
 Le programme est disponible sur Github, au https://github.com/cafelaplanck/menu.git .
 
 ## Prérequis
-- Un environnement Python 3.10+ situé à `~/env/planck`
-- Une installation TeXLive à jour
+- Un [environnement](https://docs.python.org/3/library/venv.html) [Python 3.10+](https://www.python.org/downloads/) situé à `~/env/planck`
+- Une installation [TeXLive](https://tug.org/texlive/) à jour
 
 ### Choses qui facilite le travail
 - Une ligne de commande `shell`
@@ -22,6 +22,8 @@ Pour pouvoir télécharger automatiquement la feuille de calcul, il faut obtenir
 6. Spécifiquement activer l'API Google SHeets pour le projet.
 
 ## Configuration
+
+### Fichier `menu.config`
 Le programme doit avoir un fichier `menu.config` dans le même dossier. Le contenu doit correspondre à:
 
 ```
@@ -36,6 +38,9 @@ Le programme doit avoir un fichier `menu.config` dans le même dossier. Le cont
     feuille: Liste pour menus
 
 ```
+
+### Polices de caractères
+Les polices de caractère dans le fichier suivant sont nécessaires: https://drive.google.com/drive/folders/1lvF58KR9Gv161QGD-_1RA-ZZVsnX1Ax_?usp=share_link . Le fichier est à accès contrôlé à cause des licenses des polices. Elles peuvent aussi être obtenues ou paramétrées dans `preambule.tex`.
 
 ## Exécuter le programme
 Sur Linux, UNIX, MacOS ou les dérivés, il suffit d'exécuter `Planck.engine modele-affiche.tex` pour recompiler le PDF. Le programme
