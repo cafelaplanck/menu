@@ -484,3 +484,4 @@ poetry.toml
 .DS_Store
 *.json
 *.pdf
+*.config

@@ -20,6 +20,22 @@ Pour pouvoir télécharger automatiquement la feuille de calcul, il faut obtenir
 5. Changer la valeur de `[google] credentials` dans le fichier de configuration `menu.config` .
 6. Spécifiquement activer l'API Google SHeets pour le projet.
 
+## Configuration
+Le programme doit avoir un fichier `menu.config` dans le même dossier. Le contenu doit correspondre à:
+
+```
+[DEFAULT]
+
+
+[google]
+    credentials: {nom du fichier de clé de service}
+
+[document]
+    id: 1ZHSPzywfGYVS4Y6xGfwe3T9-VhZQrgsfcKQnPx0lcvE
+    feuille: Liste pour menus
+
+```
+
 ## Exécuter le programme
 Sur Linux, UNIX, MacOS ou les dérivés, il suffit d'exécuter `Planck.engine modele-affiche.tex` pour recompiler le PDF. Le programme
 
