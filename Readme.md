@@ -23,27 +23,14 @@ Pour pouvoir télécharger automatiquement la feuille de calcul, il faut obtenir
 
 ## Configuration
 
-### Fichier `menu.config`
-Le programme doit avoir un fichier `menu.config` dans le même dossier. Le contenu doit correspondre à:
-
-```
-[DEFAULT]
-
-
-[google]
-    credentials: {nom du fichier de clé de service}
-
-[document]
-    id: 1ZHSPzywfGYVS4Y6xGfwe3T9-VhZQrgsfcKQnPx0lcvE
-    feuille: Liste pour menus
-
-```
+### Fichier de configuration
+À la première exécution, le programme vous guidera dans la configuration. Un document de configuration sera créé dans le dossier `~/.config/menu_planck`.
 
 ### Polices de caractères
 Les polices de caractère dans le fichier suivant sont nécessaires: https://drive.google.com/drive/folders/1lvF58KR9Gv161QGD-_1RA-ZZVsnX1Ax_?usp=share_link . Le fichier est à accès contrôlé à cause des licenses des polices. Elles peuvent aussi être obtenues ou paramétrées dans `preambule.tex`.
 
 ## Exécuter le programme
-Sur Linux, UNIX, MacOS ou les dérivés, il suffit d'exécuter `Planck.engine modele-affiche.tex` pour recompiler le PDF. Le programme
+Sur Linux, UNIX, MacOS ou les dérivés, il suffit d'exécuter `source Planck.engine modele-affiche.tex` pour recompiler le PDF. Le programme
 
 1. Compile `modele-affiche.tex` une première fois,
 2. Exécute PythonTeX (voir `module.py`)
