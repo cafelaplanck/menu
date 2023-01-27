@@ -1,6 +1,7 @@
 # Générer automatiquement le menu de la Planck
 
 Ce programme génère le menu de la Planck automatiquement, à partir de l'inventaire en ligne de la Planck.
+Le programme est disponible sur Github, au https://github.com/cafelaplanck/menu.git .
 
 ## Prérequis
 - Un environnement Python 3.10+ situé à `~/env/planck`
