@@ -1,0 +1,32 @@
+\documentclass[12pt, oneside]{article}
+\input{preambule}
+
+\begin{document}
+\pagestyle{fancy}
+Les prix sont affichés avec les taxes incluses.
+
+\begin{paracol}{2}
+\begin{pycode}
+from module import main
+main()
+\end{pycode}
+\end{paracol}
+
+\pagebreak
+%\entete
+\section*{Légende}
+\begin{tabular}{cl}
+\emoji{glass-of-milk} & Contient du lait ou des produits laitiers\\
+\emoji{peanuts} & Contient des arachides ou des noix\\
+\emoji{sheaf-of-rice} & Contient du gluten et/ou du blé\\
+\emoji{egg} & Contient des oeufs\\
+\emoji{fish} & Contient du poisson, des crustacés ou des fruits de mer\\
+\emoji{seedling} & Végétalien: ne contient pas de produits animaux\\
+\moutarde & Contient de la moutarde\\
+\sesame & Contient du sésame\\
+\soja & Contient du soja\\
+\sulfites & Contient des sulfites\\
+\emoji{warning} & Pourrait contenir de la moutarde, du sésame, du soja, des sulfites ou d'autres allergènes.\\
+ & Consultez nos bénévoles pour plus de détails.
+\end{tabular}
+\end{document}
