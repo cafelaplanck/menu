@@ -139,14 +139,13 @@ def afficher_catégories(subs: dict[pandas.DataFrame]):
     for cat, sub in subs.items():
         sub = sub.set_index('prod')\
                 .loc[:, ['prix', 'unit', 'avertissements']]
+        sub.index.name = None
                 
-    
         print(r'\section*{', cat, '}')
-        print(sub.to_latex(column_format='lSll',
-                        bold_rows=True,
-                        header=False,
-                        index_names=False,
-                        escape=False))
+        print(sub.style.hide_columns()\
+                       .format('{}')\
+                       .to_latex(column_format='lSll',
+                                 siunitx=True))
         print(r'\switchcolumn')
 
 def main():
